@@ -16,6 +16,11 @@
     <properties>
         <java.version>17</java.version>
     </properties>
+
+    <!-- Packaging type -->
+    <packaging>jar</packaging>
+
+    <!-- Dependencies -->
     <dependencies>
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -41,8 +46,10 @@
             <scope>test</scope>
         </dependency>
     </dependencies>
+
     <build>
         <plugins>
+            <!-- Compiler plugin for lombok annotation processing -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
@@ -55,24 +62,28 @@
                     </annotationProcessorPaths>
                 </configuration>
             </plugin>
-			<plugin>
-    <groupId>org.apache.maven.plugins</groupId>
-    <artifactId>maven-jar-plugin</artifactId>
-    <version>3.1.0</version>
-    <configuration>
-        <archive>
-            <manifestEntries>
-                <Main-Class>org.springframework.boot.loader.JarLauncher</Main-Class>
-            </manifestEntries>
-        </archive>
-    </configuration>
-</plugin>
-
+            
+            <!-- Spring Boot Maven plugin for packaging executable JAR -->
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
                 <configuration>
-                    <!-- No need to manually configure the Main-Class, Spring Boot handles it automatically -->
+                    <!-- Spring Boot automatically handles Main-Class, no need for manual config -->
+                </configuration>
+            </plugin>
+            
+            <!-- Maven Jar Plugin (if you need additional configurations, e.g. to customize manifest) -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <version>3.1.0</version>
+                <configuration>
+                    <archive>
+                        <manifestEntries>
+                            <!-- This is optional, Spring Boot automatically handles it -->
+                            <Main-Class>org.springframework.boot.loader.JarLauncher</Main-Class>
+                        </manifestEntries>
+                    </archive>
                 </configuration>
             </plugin>
         </plugins>
