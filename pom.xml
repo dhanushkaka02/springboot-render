@@ -55,6 +55,19 @@
                     </annotationProcessorPaths>
                 </configuration>
             </plugin>
+			<plugin>
+    <groupId>org.apache.maven.plugins</groupId>
+    <artifactId>maven-jar-plugin</artifactId>
+    <version>3.1.0</version>
+    <configuration>
+        <archive>
+            <manifestEntries>
+                <Main-Class>org.springframework.boot.loader.JarLauncher</Main-Class>
+            </manifestEntries>
+        </archive>
+    </configuration>
+</plugin>
+
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
